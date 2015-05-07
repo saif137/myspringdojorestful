@@ -9,3 +9,11 @@ Create a dynamic web project with name jsonweb and add source and binaries in th
 * Dojo Toolkit
 * Spring MVC
 * REST Web Service
+
+### Sample usage urls ###
+
+http://localhost:8137/jsonweb/userinfo/greeting
+http://localhost:8137/jsonweb/userinfo/greeting?name=saif
+http://localhost:8137/jsonweb/userinfo/getByFname
+http://localhost:8137/jsonweb/userinfo/getByFname/user1name
+http://localhost:8137/jsonweb/userinfo/getAll
