@@ -109,7 +109,7 @@ public class SpringServiceController {
 	
 	 @RequestMapping(value = "/greeting"
 			 		, method = RequestMethod.GET
-			 		//,headers="Accept=application/json"
+			 		,headers="Accept=application/javascript "
 			 		,produces = {"application/x-javascript"}
 			 		)
 	 public  @ResponseBody JSONWithPadding getGreeting(

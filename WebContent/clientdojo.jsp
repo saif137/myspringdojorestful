@@ -93,27 +93,79 @@
 	});
 	</script>
 
+	<!--  Validation scripts -->
 	<script>
-	<!--
-		require(["dojo/request/script", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
-		function(script, dom, domConst, JSON, on){
-		  on(dom.byId("getws"), "click", function(){
-			domConst.place("<p>Requesting http://localhost:8137/jsonweb/userinfo/greeting ...</p>", "getwsoutput");
-			script.get("http://localhost:8137/jsonweb/userinfo/greeting?callback={callback}", {jsonp: "callback"})
-			.then(function(data){	
-			  domConst.place("<p>response data: <code>" + data + "</code></p>", "getwsoutput");
-			  console.log("Data: " + data);
-			}, function(err){
-				console.log("Error jsonp: " + err);
-			}
-			);
-		  });
-		});
-	-->
+	require(["dojo/dom", "dojo/_base/array", "dojo/_base/event", "dojo/query", "dojox/validate/web", "dojox/validate/us", "dojox/validate/check", "dojo/domReady!"],
+			function(dom, arrayUtil, baseEvent, query, validate) {
+
+				function doCheck(form){
+					var results = validate.check(form, profile),					
+							r = dom.byId("validationmsg");
+
+					if(results.isSuccessful()){
+						//	everything passed, log it to the result div
+						r.innerHTML = "Everything passed validation!";
+					} else {
+						var s = "";
+						var missing = results.getMissing();
+						if(missing.length){
+							s += '<h4>The following fields are missing:</h4>'
+							+ '<ol>';
+							arrayUtil.forEach(missing, function(field){
+								s += '<li>' + field + '</li>';
+							});
+							s += '</ol>';
+						}
+
+						var invalid = results.getInvalid();
+						if(invalid.length){
+							s += '<h4>The following fields are invalid:</h4>'
+							+ '<ol>';
+							arrayUtil.forEach(invalid, function(field){
+								s += '<li>' + field + '</li>';
+							});
+							s += '</ol>';
+						}
+
+						r.innerHTML = s;
+					}
+				}
+
+				//	wait until after our requires are actually loaded.
+				profile = {
+					trim: ["fname", "lname", "email"],
+					//required: ["fname", "lname", "email"],
+					constraints: {
+						fname: 	validate.isText,
+						lname:  	validate.isText,
+						//password:  	validate.isText,
+						//password2: 	validate.isText,
+						email:		[validate.isEmailAddress, false, true],
+						//emailConfirm: [validate.isEmailAddress, false, true],
+						//phone:		validate.us.isPhoneNumber
+					},
+					//confirm: {
+					//	"emailConfirm": "email",
+					//	"password2": "password"
+					//}
+				};
+
+				//	set up the form handler.
+				var f = query("form")[0];
+				f.onsubmit = function(e){
+					baseEvent.stop(e);
+					doCheck(f);
+				};
+			});
+	</script>
+	
+	<!--  Below code is for prototyping -->
+	<!-- 
+	<script>
 	require(["dojo/request/script", "dojo/dom-construct", "dojo/dom", "dojo/_base/array",
 				"dojo/domReady!"
 				], function(script, domConstruct, dom, arrayUtil){
-					script.get("http://localhost:8137/jsonweb/userinfo/greeting", {
+					script.get("http://localhost:8137/jsonweb/userinfo/greeting?callback={callback}", {
 						jsonp: "callback"
 					}).then(function(response){
 						return response.data;
@@ -129,10 +181,7 @@
 					});
 				});
 	</script>
-	
-	<!--  Below code is for prototyping -->
-	<!-- 
-	
+		
 	<script>
 		require(["dojo/request/script", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
 		function(script, dom, domConst, JSON, on){
@@ -166,6 +215,8 @@
 	
 <body class="claro">
 
+<form>
+
 <h1>All users information</h1>
 <div id="getalldiv"></div>
 <button type="button" id="getallbutton">Get all user information</button>
@@ -173,27 +224,34 @@
 <h1>Searching by first name</h1>
 <div id="getbyfname"></div>
 <label>First name</label>
-<input type="text" value="" id="fname" autocomplete="off">
+<input type="text" value="" id="fname" autocomplete="off" name="fname">
 <button type="button" id="getbyfnamebutton">Get user by first name</button>
 
 <h1>Searching by last name</h1>
 <div id="getbylname"></div>
 <label>Last name</label>
-<input type="text" value="" id="lname" autocomplete="off">
+<input type="text" value="" id="lname" autocomplete="off" name="lname">
 <button type="button" id="getbylnamebutton">Get user by last name</button>
 
 <h1>Searching by email</h1>
 <div id="getbyemail"></div>
 <label>Last name</label>
-<input type="text" value="" id="email" autocomplete="off">
+<input type="text" value="" id="email" autocomplete="off" name="email">
 <button type="button" id="getbyemailbutton">Get user by email</button>
+<br>
+<br>
+<input type="submit" value="Validate fields" />
+
+</form>
+
+<div id="validationmsg"></div>
+
+<!-- This code is for prototyping -->
+<!-- 
 
 <h1>My Web Service Output:</h1>
 <div id="getwsoutput"></div>
 <button type="button" id="getws">Get Web Service Output</button>
-
-<!-- This code is for prototyping -->
-<!-- 
 
 <h1>Dojo Pulls Output:</h1>
 <div id="getdojopulloutput"></div>
