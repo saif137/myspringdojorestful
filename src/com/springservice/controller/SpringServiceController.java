@@ -13,12 +13,98 @@ import com.fasterxml.jackson.databind.ObjectMapper;
   
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.springservice.bo.greetingbo;
+import com.springservice.bo.userbo;
+import com.springservice.dao.userdao;
 
 @RestController
+@RequestMapping(value = "/userinfo")
 public class SpringServiceController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
+    private static final userdao tempdao = new userdao();
+	
+	@RequestMapping(value = "/getAll"
+	 		, method = RequestMethod.GET
+	 		)
+		public  @ResponseBody String getAll() {
+		Gson gson=new Gson();
+		return gson.toJson(tempdao.getAll());
+		}
+    
+	@RequestMapping(value = "/getByFname"
+	 		, method = RequestMethod.GET
+	 		)
+		public  @ResponseBody String getByFname() {
+		Gson gson=new Gson();
+		return gson.toJson(tempdao.getAll());
+		}
+    
+	@RequestMapping(value = "/getByFname/{fname}"
+			 		, method = RequestMethod.GET
+			 		)
+	 public  @ResponseBody String getByFname(@PathVariable String fname) {
+		userbo temp = tempdao.getByFname(fname);
+		if(temp == null)
+		{
+			System.out.println("fname " + fname + " not found");
+			return "{\"fname\":\"notfound\"}";
+		}
+		Gson gson=new Gson();
+		System.out.println("fname " + temp.getFname() + " found");
+        return gson.toJson(temp);
+	 }
+	
+	@RequestMapping(value = "/getByLname"
+	 		, method = RequestMethod.GET
+	 		)
+		public  @ResponseBody String getByLname() {
+		Gson gson=new Gson();
+		return gson.toJson(tempdao.getAll());
+		}
+	
+	@RequestMapping(value = "/getByLname/{lname}"
+			 		, method = RequestMethod.GET
+			 		)
+	 public  @ResponseBody String getByLname(@PathVariable String lname) {
+		userbo temp = tempdao.getByLname(lname);
+		if(temp == null)
+		{
+			System.out.println("lname " + lname + " not found");
+			return "{\"lname\":\"notfound\"}";
+		}
+		Gson gson=new Gson();
+		System.out.println("lname " + temp.getFname() + " found");
+	    return gson.toJson(temp);
+	 }	
+	
+	@RequestMapping(value = "/getByEmail"
+	 		, method = RequestMethod.GET
+	 		)
+		public  @ResponseBody String getByEmail() {
+		Gson gson=new Gson();
+		return gson.toJson(tempdao.getAll());
+		}
+	
+	@RequestMapping(value = "/getByEmail/{email}"
+			 		, method = RequestMethod.GET
+			 		)
+	 public  @ResponseBody String getByEmail(@PathVariable String email) {
+		userbo temp = tempdao.getByEmail(email);
+		if(temp == null)
+		{
+			System.out.println("email " + email + " not found");
+			return "{\"email\":\"notfound\"}";
+		}
+		Gson gson=new Gson();
+		System.out.println("email " + temp.getFname() + " found");
+	    return gson.toJson(temp);
+	 }		
+	
+	/*
+	 * Below code was used during prototyping
+	 */
 	
 	 @RequestMapping(value = "/greeting"
 			 		, method = RequestMethod.GET
@@ -32,7 +118,7 @@ public class SpringServiceController {
 	             String.format(template, name));
 	     */
 	     Gson gson=new Gson();
-	        String jsonResponse=gson.toJson(new Greeting(counter.incrementAndGet(),
+	        String jsonResponse=gson.toJson(new greetingbo(counter.incrementAndGet(),
 		             String.format(template, name)));
 	        return jsonResponse;
 	 }

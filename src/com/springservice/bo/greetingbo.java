@@ -1,11 +1,11 @@
-package com.springservice.controller;
+package com.springservice.bo;
 
-public class Greeting {
+public class greetingbo {
 
     private final long id;
     private final String content;
 
-    public Greeting(long id, String content) {
+    public greetingbo(long id, String content) {
         this.id = id;
         this.content = content;
     }
