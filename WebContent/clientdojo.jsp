@@ -92,16 +92,16 @@
 	  });
 	});
 	</script>
-	
-	<!--  Below code is for prototyping -->
-	<!-- 
+
 	<script>
+	<!--
 		require(["dojo/request/script", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
 		function(script, dom, domConst, JSON, on){
 		  on(dom.byId("getws"), "click", function(){
-			domConst.place("<p>Requesting http://localhost:8137/jsonweb/greeting ...</p>", "getwsoutput");
-			script.get("http://localhost:8137/jsonweb/greeting", {json: "callback"}).then(function(data){	
-			  domConst.place("<p>response data: <code>" + dojo.fromJson(data, true) + "</code></p>", "getwsoutput");
+			domConst.place("<p>Requesting http://localhost:8137/jsonweb/userinfo/greeting ...</p>", "getwsoutput");
+			script.get("http://localhost:8137/jsonweb/userinfo/greeting?callback={callback}", {jsonp: "callback"})
+			.then(function(data){	
+			  domConst.place("<p>response data: <code>" + data + "</code></p>", "getwsoutput");
 			  console.log("Data: " + data);
 			}, function(err){
 				console.log("Error jsonp: " + err);
@@ -109,21 +109,29 @@
 			);
 		  });
 		});
+	-->
+	require(["dojo/request/script", "dojo/dom-construct", "dojo/dom", "dojo/_base/array",
+				"dojo/domReady!"
+				], function(script, domConstruct, dom, arrayUtil){
+					script.get("http://localhost:8137/jsonweb/userinfo/greeting", {
+						jsonp: "callback"
+					}).then(function(response){
+						return response.data;
+					}).then(function(results){
+						// Create a document fragment to keep from
+						// doing live DOM manipulation
+						var fragment = document.createDocumentFragment();
+						arrayUtil.forEach(results, function(pull){
+							var li = domConstruct.create("li", {}, fragment);
+							var link = domConstruct.create("a", {href: pull.url, innerHTML: pull.title}, li);
+						});
+						domConstruct.place(fragment, dom.byId("getwsoutput"));
+					});
+				});
 	</script>
-
-	<script>
-		require(["dojo/request/xhr", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
-		function(xhr, dom, domConst, JSON, on){
-		  on(dom.byId("getws"), "click", function(){
-			domConst.place("<p>Requesting...</p>", "getwsoutput");
-			xhr("http://localhost:8137/jsonweb/greeting", {
-			  handleAs: "json"
-			}).then(function(data){
-			  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "getwsoutput");
-			});
-		  });
-		});
-	</script>
+	
+	<!--  Below code is for prototyping -->
+	<!-- 
 	
 	<script>
 		require(["dojo/request/script", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
@@ -140,32 +148,20 @@
 		  
 		});
 	</script>
-	
-	<script>
-	function searchGoogle(){
-	   // Look up the node we'll stick the text under.
-	   var targetNode = dojo.byId("getwsio");
 
-	   // The parameters to pass to xhrGet, the url, how to handle it, and the callbacks.
-	   var jsonpArgs = {
-		 url: "http://localhost:8137/jsonweb/greeting",
-		 callbackParamName: "callback",
-		 content: {
-		   v: "1.0",
-		   q: "dojo toolkit"
-		 },
-		 load: function(data){
-		   // Set the data from the search into the viewbox in nicely formatted JSON
-		   targetNode.innerHTML = "<pre>" + dojo.toJson(data, true) + "</pre>";
-		 },
-		 error: function(error){
-		   targetNode.innerHTML = "An unexpected error occurred: " + error;
-		 }
-	   };
-	   dojo.io.script.get(jsonpArgs);
-	 }
-	 dojo.ready(searchGoogle);
-	</script>
+	<script>
+		require(["dojo/request/xhr", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
+		function(xhr, dom, domConst, JSON, on){
+		  on(dom.byId("getws"), "click", function(){
+			domConst.place("<p>Requesting...</p>", "getwsoutput");
+			xhr("http://localhost:8137/userinfo/jsonweb/greeting", {
+			  handleAs: "json"
+			}).then(function(data){
+			  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "getwsoutput");
+			});
+		  });
+		});
+	</script>	
 	 -->
 	
 <body class="claro">
@@ -192,15 +188,12 @@
 <input type="text" value="" id="email" autocomplete="off">
 <button type="button" id="getbyemailbutton">Get user by email</button>
 
-<!-- This code is for prototyping -->
-<!-- 
 <h1>My Web Service Output:</h1>
 <div id="getwsoutput"></div>
 <button type="button" id="getws">Get Web Service Output</button>
 
-<h1>My Web Service io script Output:</h1>
-<div id="getwsiooutput"></div>
-<button type="button" id="getwsio">Get Web Service Output</button>
+<!-- This code is for prototyping -->
+<!-- 
 
 <h1>Dojo Pulls Output:</h1>
 <div id="getdojopulloutput"></div>

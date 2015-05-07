@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.springservice.bo.greetingbo;
 import com.springservice.bo.userbo;
 import com.springservice.dao.userdao;
+import com.sun.jersey.api.json.JSONWithPadding;
 
 @RestController
 @RequestMapping(value = "/userinfo")
@@ -109,21 +110,27 @@ public class SpringServiceController {
 	 @RequestMapping(value = "/greeting"
 			 		, method = RequestMethod.GET
 			 		//,headers="Accept=application/json"
-			 		//,produces = {"application/x-javascript"}
+			 		,produces = {"application/x-javascript"}
 			 		)
-	 public  @ResponseBody String getGreeting(@RequestParam(value="name", defaultValue="default") String name) {
+	 public  @ResponseBody JSONWithPadding getGreeting(
+			 @RequestParam(value="name", defaultValue="default") String name
+			 , @RequestParam("callback") String callback) {
 	     
-		 /*
-		 return new Greeting(counter.incrementAndGet(),
-	             String.format(template, name));
-	     */
-	     Gson gson=new Gson();
+			 /*
+			 return new greetingbo(counter.incrementAndGet(),
+		             String.format(template, name));
+		     */
+		 	/*
+	     	Gson gson=new Gson();
 	        String jsonResponse=gson.toJson(new greetingbo(counter.incrementAndGet(),
 		             String.format(template, name)));
 	        return jsonResponse;
+	        */
+	        return new JSONWithPadding(new greetingbo(counter.incrementAndGet(),
+		             String.format(template, name)), callback);
 	 }
-	 //http://localhost:8137/jsonweb/greeting
-	 //http://localhost:8137/jsonweb/greeting?name=saif
+	 //http://localhost:8137/userinfo/jsonweb/greeting
+	 //http://localhost:8137/jsonweb/userinfo/greeting?name=saif
  
 	 /*
 	  * Work around using custom method
