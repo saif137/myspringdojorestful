@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Client Using Dojo</title>
+	<link rel="stylesheet" href="style.css" media="screen">
     <link rel="stylesheet" href="dijit/themes/soria/soria.css" media="screen">    
 </head>
 
