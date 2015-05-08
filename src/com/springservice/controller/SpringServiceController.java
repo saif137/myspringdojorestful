@@ -2,12 +2,14 @@ package com.springservice.controller;
  
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
   
@@ -19,13 +21,20 @@ import com.springservice.dao.userdao;
 import com.sun.jersey.api.json.JSONWithPadding;
 
 @RestController
-@RequestMapping(value = "/userinfo")
+@RequestMapping(value = "/")
 public class SpringServiceController {
 
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
     private static final userdao tempdao = new userdao();
 	
+    //Redirect on startup to default index.jsp
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView method() {
+            return new ModelAndView("redirect:" + "index.jsp");
+
+    }
+    
 	@RequestMapping(value = "/getAll"
 	 		, method = RequestMethod.GET
 	 		)

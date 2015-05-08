@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Client Using Dojo</title>
+    <link rel="stylesheet" href="dijit/themes/soria/soria.css" media="screen">    
 </head>
+
+<body class="soria">
+
     <h1 id="wsqi">REST Web Service Query Interface Using Dojo</h1>
     <!-- load Dojo -->
     <script src="dojo/dojo.js" data-dojo-config="async: true"></script>
@@ -213,7 +217,6 @@
 	</script>	
 	 -->
 	
-<body class="claro">
 
 <form>
 
