@@ -17,9 +17,6 @@ http://localhost:8137/jsonweb/clientdojo.jsp
 
 or you can try REST Web Service directly using:
 
-http://localhost:8137/jsonweb/userinfo/greeting
-
-http://localhost:8137/jsonweb/userinfo/greeting?name=saif
 
 http://localhost:8137/jsonweb/userinfo/getByFname
 
