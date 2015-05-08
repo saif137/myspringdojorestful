@@ -25,12 +25,12 @@
 	require(["dojo/request/xhr", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
 	function(xhr, dom, domConst, JSON, on){
 	  on(dom.byId("getallbutton"), "click", function(){
-		domConst.place("<p>Requesting all users information </p>", "getalldiv");
+		domConst.place("<p>Requesting all users information </p>", "jsonresponsediv");
 		xhr("http://localhost:8137/jsonweb/userinfo/getAll", {
 		  handleAs: "json"
 		}).then(function(data){
-		  domConst.empty("getalldiv");
-		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "getalldiv");
+		  domConst.empty("jsonresponsediv");
+		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "jsonresponsediv");
 		}, function(err){
 				console.log("Error xhr: " + err);
 		}
@@ -43,13 +43,13 @@
 	require(["dojo/request/xhr", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
 	function(xhr, dom, domConst, JSON, on){
 	  on(dom.byId("getbyfnamebutton"), "click", function(){
-		domConst.place("<p>Requesting user by first name </p>", "getbyfname");
+		domConst.place("<p>Requesting user by first name </p>", "jsonresponsediv");
 		xhr("http://localhost:8137/jsonweb/userinfo/getByFname/" + dom.byId("fname").value, {
 		  handleAs: "json"
 		}).then(function(data){
-		  domConst.empty("getbyfname");
+		  domConst.empty("jsonresponsediv");
 		  console.log("text box value" + dom.byId("fname").value);
-		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "getbyfname");
+		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "jsonresponsediv");
 		}, function(err){
 				console.log("Error xhr: " + err);
 		}
@@ -62,13 +62,13 @@
 	require(["dojo/request/xhr", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
 	function(xhr, dom, domConst, JSON, on){
 	  on(dom.byId("getbylnamebutton"), "click", function(){
-		domConst.place("<p>Requesting user by last name </p>", "getbylname");
+		domConst.place("<p>Requesting user by last name </p>", "jsonresponsediv");
 		xhr("http://localhost:8137/jsonweb/userinfo/getByLname/" + dom.byId("lname").value, {
 		  handleAs: "json"
 		}).then(function(data){
-		  domConst.empty("getbylname");
+		  domConst.empty("jsonresponsediv");
 		  console.log("text box value" + dom.byId("lname").value);
-		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "getbylname");
+		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "jsonresponsediv");
 		}, function(err){
 				console.log("Error xhr: " + err);
 		}
@@ -81,13 +81,13 @@
 	require(["dojo/request/xhr", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
 	function(xhr, dom, domConst, JSON, on){
 	  on(dom.byId("getbyemailbutton"), "click", function(){
-		domConst.place("<p>Requesting user by email </p>", "getbyemail");
+		domConst.place("<p>Requesting user by email </p>", "jsonresponsediv");
 		xhr("http://localhost:8137/jsonweb/userinfo/getByEmail/" + dom.byId("email").value, {
 		  handleAs: "json"
 		}).then(function(data){
-		  domConst.empty("getbyemail");
+		  domConst.empty("jsonresponsediv");
 		  console.log("text box value" + dom.byId("email").value);
-		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "getbyemail");
+		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "jsonresponsediv");
 		}, function(err){
 				console.log("Error xhr: " + err);
 		}
@@ -103,7 +103,7 @@
 
 				function doCheck(form){
 					var results = validate.check(form, profile),					
-							r = dom.byId("validationmsg");
+							r = dom.byId("jsonresponsediv");
 
 					if(results.isSuccessful()){
 						//	everything passed, log it to the result div
@@ -180,7 +180,7 @@
 							var li = domConstruct.create("li", {}, fragment);
 							var link = domConstruct.create("a", {href: pull.url, innerHTML: pull.title}, li);
 						});
-						domConstruct.place(fragment, dom.byId("getwsoutput"));
+						domConstruct.place(fragment, dom.byId("jsonresponsediv"));
 					});
 				});
 	</script>
@@ -190,11 +190,11 @@
 		function(script, dom, domConst, JSON, on){
 		  
 		  on(dom.byId("getdojopull"), "click", function(){
-			domConst.place("<p>Requesting...</p>", "getdojopulloutput");
+			domConst.place("<p>Requesting...</p>", "jsonresponsediv");
 			script.get("https://api.github.com/repos/dojo/dojo/pulls", {
 			  jsonp: "callback"
 			}).then(function(data){
-			  domConst.place("<p>response data: <code>" + JSON.stringify(data) + "</code></p>", "getdojopulloutput");
+			  domConst.place("<p>response data: <code>" + JSON.stringify(data) + "</code></p>", "jsonresponsediv");
 			});
 		  });
 		  
@@ -205,11 +205,11 @@
 		require(["dojo/request/xhr", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
 		function(xhr, dom, domConst, JSON, on){
 		  on(dom.byId("getws"), "click", function(){
-			domConst.place("<p>Requesting...</p>", "getwsoutput");
+			domConst.place("<p>Requesting...</p>", "jsonresponsediv");
 			xhr("http://localhost:8137/userinfo/jsonweb/greeting", {
 			  handleAs: "json"
 			}).then(function(data){
-			  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "getwsoutput");
+			  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "jsonresponsediv");
 			});
 		  });
 		});
@@ -221,30 +221,30 @@
 					<h1>REST Web Service Query Interface Using Dojo</h1>
 				</div>
 			</div>
-			<div class="centerPanel" style="height: 64%; width: 100%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
+			<div id="jsonresponsediv" class="edgePanel" style="height: 64%; width: 48%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="splitter: true, region: 'right'">
+			where am i?
+			</div>
+
+			<div class="centerPanel" style="height: 64%; width: 48%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
 
 	
 
 			<form>
 			
-			<h1>All users information</h1>
-			<div id="getalldiv"></div>
+			<h2>All users information</h2>
 			<button type="button" id="getallbutton">Get all user information</button>
 			
-			<h1>Searching by first name</h1>
-			<div id="getbyfname"></div>
+			<h2>Searching by first name</h2>
 			<label>First name</label>
 			<input type="text" value="" id="fname" autocomplete="off" name="fname">
 			<button type="button" id="getbyfnamebutton">Get user by first name</button>
 			
-			<h1>Searching by last name</h1>
-			<div id="getbylname"></div>
+			<h2>Searching by last name</h2>
 			<label>Last name</label>
 			<input type="text" value="" id="lname" autocomplete="off" name="lname">
 			<button type="button" id="getbylnamebutton">Get user by last name</button>
 			
-			<h1>Searching by email</h1>
-			<div id="getbyemail"></div>
+			<h2>Searching by email</h2>
 			<label>Email</label>
 			<input type="text" value="" id="email" autocomplete="off" name="email">
 			<button type="button" id="getbyemailbutton">Get user by email</button>
@@ -253,8 +253,6 @@
 			<input type="submit" value="Validate fields" />
 			
 			</form>
-			
-			<div id="validationmsg"></div>
 
 <!-- This code is for prototyping -->
 <!-- 
