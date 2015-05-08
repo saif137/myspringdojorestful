@@ -235,7 +235,7 @@
 
 <h1>Searching by email</h1>
 <div id="getbyemail"></div>
-<label>Last name</label>
+<label>Email</label>
 <input type="text" value="" id="email" autocomplete="off" name="email">
 <button type="button" id="getbyemailbutton">Get user by email</button>
 <br>
