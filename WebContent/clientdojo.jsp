@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Client Using Dojo</title>
 	<link rel="stylesheet" href="style.css" media="screen">
+	<link rel="stylesheet" href="demo.css" media="screen">
     <link rel="stylesheet" href="dijit/themes/soria/soria.css" media="screen">    
 </head>
 
@@ -217,16 +218,16 @@
 	</script>	
 	 -->
 <div class="demoLayout" style="height: 786px; width: 1024px" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design: 'headline'">
-			<div class="demoLayout" style="height: 18%" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="region: 'top', splitter: true, design: 'headline'">
+			<div class="demoLayout" style="height: 13%" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="region: 'top', splitter: true, design: 'headline'">
 				<div id="wsqi" align="center" class="centerPanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
 					<h1>REST Web Service Query Interface Using Dojo</h1>
 				</div>
 			</div>
-			<div id="jsonresponsediv" class="edgePanel" style="height: 64%; width: 48%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="splitter: true, region: 'right'">
-			where am i?
+			<div id="jsonresponsediv" class="edgePanel" style="height: 75%; width: 48%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="splitter: true, region: 'right'">
+			Output Window:
 			</div>
 
-			<div class="centerPanel" style="height: 64%; width: 48%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
+			<div class="centerPanel" style="height: 75%; width: 48%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
 
 	
 
@@ -267,7 +268,7 @@
 <button type="button" id="getdojopull">Get Dojo Pulls</button>
 -->
 			</div>
-			<div class="edgePanel"  style="height: 18%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="splitter: true, region: 'bottom'">
+			<div class="edgePanel"  style="height: 11%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="splitter: true, region: 'bottom'">
 			This region will be used to report any progress
 			</div>
 </div>

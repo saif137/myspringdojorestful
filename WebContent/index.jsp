@@ -8,6 +8,8 @@
 
 <script src="dojo/dojo.js"></script>
 
+<link rel="stylesheet" href="style.css" media="screen">
+<link rel="stylesheet" href="demo.css" media="screen">
 <!--  link rel="stylesheet" href="dijit/themes/claro/claro.css" media="screen" -->
 <!--  link rel="stylesheet" href="dijit/themes/nihilo/nihilo.css" media="screen" -->
 <link rel="stylesheet" href="dijit/themes/soria/soria.css" media="screen">
@@ -16,13 +18,13 @@
 <body class="soria">
 
 <div class="demoLayout" style="height: 786px; width: 1024px" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design: 'headline'">
-			<div class="demoLayout" style="height: 18%" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="region: 'top', splitter: true, design: 'headline'">
+			<div class="demoLayout" style="height: 13%" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="region: 'top', splitter: true, design: 'headline'">
 				<div align="center" class="centerPanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
 					<h1>Welcome to Dojo and REST Web Service Applications Demo Site</h1>
 					<p>You can make use of Dojo Toolkit and REST Web Service on this web site</p>
 				</div>
 			</div>
-			<div class="centerPanel" style="height: 64%; width: 100%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
+			<div class="centerPanel" style="height: 75%; width: 100%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
 				<div class="centerPanel" data-dojo-type="dijit.layout.TabContainer" data-dojo-props="region: 'center', tabPosition: 'top'" style="width: 600px;">
 					<div data-dojo-type="dijit.layout.ContentPane" title="Demo User Information">
 						<h4>User Information REST Web Service Demo</h4>
@@ -37,7 +39,7 @@
 				<div class="centerPanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">center</div>
 				<!-- div class="edgePanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'left'">left</div>
 			</div -->
-			<div class="edgePanel"  style="height: 18%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="splitter: true, region: 'bottom'">
+			<div class="edgePanel"  style="height: 10%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="splitter: true, region: 'bottom'">
 			This region will be used to report any progress
 			</div>
 </div>
