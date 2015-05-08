@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
   
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+//import com.google.gson.GsonBuilder;
 import com.springservice.bo.greetingbo;
 import com.springservice.bo.userbo;
 import com.springservice.dao.userdao;
@@ -35,7 +35,7 @@ public class SpringServiceController {
 
     }
     
-	@RequestMapping(value = "/getAll"
+	@RequestMapping(value = "/userinfo/getAll"
 	 		, method = RequestMethod.GET
 	 		)
 		public  @ResponseBody String getAll() {
@@ -43,7 +43,7 @@ public class SpringServiceController {
 		return gson.toJson(tempdao.getAll());
 		}
     
-	@RequestMapping(value = "/getByFname"
+	@RequestMapping(value = "/userinfo/getByFname"
 	 		, method = RequestMethod.GET
 	 		)
 		public  @ResponseBody String getByFname() {
@@ -51,7 +51,7 @@ public class SpringServiceController {
 		return gson.toJson(tempdao.getAll());
 		}
     
-	@RequestMapping(value = "/getByFname/{fname}"
+	@RequestMapping(value = "/userinfo/getByFname/{fname}"
 			 		, method = RequestMethod.GET
 			 		)
 	 public  @ResponseBody String getByFname(@PathVariable String fname) {
@@ -66,7 +66,7 @@ public class SpringServiceController {
         return gson.toJson(temp);
 	 }
 	
-	@RequestMapping(value = "/getByLname"
+	@RequestMapping(value = "/userinfo/getByLname"
 	 		, method = RequestMethod.GET
 	 		)
 		public  @ResponseBody String getByLname() {
@@ -74,7 +74,7 @@ public class SpringServiceController {
 		return gson.toJson(tempdao.getAll());
 		}
 	
-	@RequestMapping(value = "/getByLname/{lname}"
+	@RequestMapping(value = "/userinfo/getByLname/{lname}"
 			 		, method = RequestMethod.GET
 			 		)
 	 public  @ResponseBody String getByLname(@PathVariable String lname) {
@@ -89,7 +89,7 @@ public class SpringServiceController {
 	    return gson.toJson(temp);
 	 }	
 	
-	@RequestMapping(value = "/getByEmail"
+	@RequestMapping(value = "/userinfo/getByEmail"
 	 		, method = RequestMethod.GET
 	 		)
 		public  @ResponseBody String getByEmail() {
@@ -97,7 +97,7 @@ public class SpringServiceController {
 		return gson.toJson(tempdao.getAll());
 		}
 	
-	@RequestMapping(value = "/getByEmail/{email}"
+	@RequestMapping(value = "/userinfo/getByEmail/{email}"
 			 		, method = RequestMethod.GET
 			 		)
 	 public  @ResponseBody String getByEmail(@PathVariable String email) {
@@ -116,7 +116,7 @@ public class SpringServiceController {
 	 * Below code was used during prototyping
 	 */
 	
-	 @RequestMapping(value = "/greeting"
+	 @RequestMapping(value = "/userinfo/greeting"
 			 		, method = RequestMethod.GET
 			 		,headers="Accept=application/javascript "
 			 		,produces = {"application/x-javascript"}

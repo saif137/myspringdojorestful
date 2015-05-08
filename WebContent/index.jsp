@@ -17,11 +17,9 @@
 
 <div class="demoLayout" style="height: 786px; width: 1024px" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design: 'headline'">
 			<div class="demoLayout" style="height: 18%" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="region: 'top', splitter: true, design: 'headline'">
-				<div class="centerPanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
-					<center>
+				<div align="center" class="centerPanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
 					<h1>Welcome to Dojo and REST Web Service Applications Demo Site</h1>
 					<p>You can make use of Dojo Toolkit and REST Web Service on this web site</p>
-					</center>
 				</div>
 			</div>
 			<div class="centerPanel" style="height: 64%; width: 100%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">

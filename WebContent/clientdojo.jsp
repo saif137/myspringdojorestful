@@ -8,7 +8,6 @@
 
 <body class="soria">
 
-    <h1 id="wsqi">REST Web Service Query Interface Using Dojo</h1>
     <!-- load Dojo -->
     <script src="dojo/dojo.js" data-dojo-config="async: true"></script>
 	
@@ -216,38 +215,46 @@
 		});
 	</script>	
 	 -->
+<div class="demoLayout" style="height: 786px; width: 1024px" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design: 'headline'">
+			<div class="demoLayout" style="height: 18%" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="region: 'top', splitter: true, design: 'headline'">
+				<div id="wsqi" align="center" class="centerPanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
+					<h1>REST Web Service Query Interface Using Dojo</h1>
+				</div>
+			</div>
+			<div class="centerPanel" style="height: 64%; width: 100%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
+
 	
 
-<form>
-
-<h1>All users information</h1>
-<div id="getalldiv"></div>
-<button type="button" id="getallbutton">Get all user information</button>
-
-<h1>Searching by first name</h1>
-<div id="getbyfname"></div>
-<label>First name</label>
-<input type="text" value="" id="fname" autocomplete="off" name="fname">
-<button type="button" id="getbyfnamebutton">Get user by first name</button>
-
-<h1>Searching by last name</h1>
-<div id="getbylname"></div>
-<label>Last name</label>
-<input type="text" value="" id="lname" autocomplete="off" name="lname">
-<button type="button" id="getbylnamebutton">Get user by last name</button>
-
-<h1>Searching by email</h1>
-<div id="getbyemail"></div>
-<label>Email</label>
-<input type="text" value="" id="email" autocomplete="off" name="email">
-<button type="button" id="getbyemailbutton">Get user by email</button>
-<br>
-<br>
-<input type="submit" value="Validate fields" />
-
-</form>
-
-<div id="validationmsg"></div>
+			<form>
+			
+			<h1>All users information</h1>
+			<div id="getalldiv"></div>
+			<button type="button" id="getallbutton">Get all user information</button>
+			
+			<h1>Searching by first name</h1>
+			<div id="getbyfname"></div>
+			<label>First name</label>
+			<input type="text" value="" id="fname" autocomplete="off" name="fname">
+			<button type="button" id="getbyfnamebutton">Get user by first name</button>
+			
+			<h1>Searching by last name</h1>
+			<div id="getbylname"></div>
+			<label>Last name</label>
+			<input type="text" value="" id="lname" autocomplete="off" name="lname">
+			<button type="button" id="getbylnamebutton">Get user by last name</button>
+			
+			<h1>Searching by email</h1>
+			<div id="getbyemail"></div>
+			<label>Email</label>
+			<input type="text" value="" id="email" autocomplete="off" name="email">
+			<button type="button" id="getbyemailbutton">Get user by email</button>
+			<br>
+			<br>
+			<input type="submit" value="Validate fields" />
+			
+			</form>
+			
+			<div id="validationmsg"></div>
 
 <!-- This code is for prototyping -->
 <!-- 
@@ -260,5 +267,25 @@
 <div id="getdojopulloutput"></div>
 <button type="button" id="getdojopull">Get Dojo Pulls</button>
 -->
+			</div>
+			<div class="edgePanel"  style="height: 18%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="splitter: true, region: 'bottom'">
+			This region will be used to report any progress
+			</div>
+</div>
+
+<script>
+	require(["dojo/parser"
+	         , "dijit/layout/BorderContainer"
+	         , "dijit/layout/TabContainer"
+	         , "dijit/layout/ContentPane"
+	         , "dijit/form/Button"
+	         , "dijit/form/DropDownButton"
+	         , "dijit/TooltipDialog"
+	         , "dijit/form/TextBox"
+	         , "dojo/domReady!"], 
+	function(parser){
+		parser.parse();
+	});
+	</script>
 
 </body>
