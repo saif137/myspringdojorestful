@@ -1,6 +1,10 @@
 package com.springservice.controller;
  
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,10 +13,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 //import com.fasterxml.jackson.databind.ObjectMapper;
   
+
+
+
+
 import com.google.gson.Gson;
 //import com.google.gson.GsonBuilder;
 import com.springservice.bo.greetingbo;
@@ -141,6 +150,19 @@ public class SpringServiceController {
 	 //http://localhost:8137/userinfo/jsonweb/greeting
 	 //http://localhost:8137/jsonweb/userinfo/greeting?name=saif
  
+		
+	 //Below code is used during working for prototyping
+	    /*
+	    //Redirect on startup to default index.jsp
+	    @RequestMapping(value = "/restconsumer", method = RequestMethod.GET)
+	    public ModelAndView restconsumer(HttpServletRequest request, HttpServletResponse response) {
+	    		RestTemplate restTemplate = new RestTemplate();
+	    		ArrayList<userbo> obj = restTemplate.getForObject("http://graph.facebook.com/pivotalsoftware", (ArrayList<userbo>).class);
+	            return new ModelAndView("redirect:" + "restconsumer.jsp").addObject(obj);
+
+	    }
+	    */
+
 	 /*
 	  * Work around using custom method
 	 @RequestMapping(value = "/greeting"

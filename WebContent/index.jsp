@@ -32,6 +32,12 @@
 						Click here for user information
 						</a>
 					</div>
+					<!-- div data-dojo-type="dijit.layout.ContentPane" title="Demo REST Consumer">
+						<h4>Consuming REST Web Service Using JSP</h4>
+						<a href="/restconsumer">
+						Click here for REST consumer jsp
+						</a>
+					</div -->
 				</div>
 			</div>
 			<!--  div class="edgePanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="splitter: true, region: 'left'">left</div -->
