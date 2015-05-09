@@ -40,7 +40,7 @@ public class SpringServiceController {
     //Redirect on startup to default index.jsp
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView method() {
-            return new ModelAndView("redirect:" + "index.jsp");
+            return new ModelAndView("redirect:" + "clientdojosepout.jsp");
 
     }
     

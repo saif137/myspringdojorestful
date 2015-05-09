@@ -27,12 +27,12 @@
 	require(["dojo/request/xhr", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
 	function(xhr, dom, domConst, JSON, on){
 	  on(dom.byId("getallbutton"), "click", function(){
-		domConst.place("<p>Requesting all users information </p>", "jsonresponsediv");
+		domConst.place("<p>Requesting all users information </p>", "getall");
 		xhr("http://localhost:8137/jsonweb/userinfo/getAll", {
 		  handleAs: "json"
 		}).then(function(data){
-		  domConst.empty("jsonresponsediv");
-		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "jsonresponsediv");
+		  domConst.empty("getall");
+		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "getall");
 		}, function(err){
 				console.log("Error xhr: " + err);
 		}
@@ -45,13 +45,13 @@
 	require(["dojo/request/xhr", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
 	function(xhr, dom, domConst, JSON, on){
 	  on(dom.byId("getbyfnamebutton"), "click", function(){
-		domConst.place("<p>Requesting user by first name </p>", "jsonresponsediv");
+		domConst.place("<p>Requesting user by first name </p>", "getfname");
 		xhr("http://localhost:8137/jsonweb/userinfo/getByFname/" + dom.byId("fname").value, {
 		  handleAs: "json"
 		}).then(function(data){
-		  domConst.empty("jsonresponsediv");
+		  domConst.empty("getfname");
 		  console.log("text box value" + dom.byId("fname").value);
-		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "jsonresponsediv");
+		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "getfname");
 		}, function(err){
 				console.log("Error xhr: " + err);
 		}
@@ -64,13 +64,13 @@
 	require(["dojo/request/xhr", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
 	function(xhr, dom, domConst, JSON, on){
 	  on(dom.byId("getbylnamebutton"), "click", function(){
-		domConst.place("<p>Requesting user by last name </p>", "jsonresponsediv");
+		domConst.place("<p>Requesting user by last name </p>", "getlname");
 		xhr("http://localhost:8137/jsonweb/userinfo/getByLname/" + dom.byId("lname").value, {
 		  handleAs: "json"
 		}).then(function(data){
-		  domConst.empty("jsonresponsediv");
+		  domConst.empty("getlname");
 		  console.log("text box value" + dom.byId("lname").value);
-		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "jsonresponsediv");
+		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "getlname");
 		}, function(err){
 				console.log("Error xhr: " + err);
 		}
@@ -83,13 +83,13 @@
 	require(["dojo/request/xhr", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
 	function(xhr, dom, domConst, JSON, on){
 	  on(dom.byId("getbyemailbutton"), "click", function(){
-		domConst.place("<p>Requesting user by email </p>", "jsonresponsediv");
+		domConst.place("<p>Requesting user by email </p>", "getemail");
 		xhr("http://localhost:8137/jsonweb/userinfo/getByEmail/" + dom.byId("email").value, {
 		  handleAs: "json"
 		}).then(function(data){
-		  domConst.empty("jsonresponsediv");
+		  domConst.empty("getemail");
 		  console.log("text box value" + dom.byId("email").value);
-		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "jsonresponsediv");
+		  domConst.place("<p>response: <code>" + JSON.stringify(data) + "</code></p>", "getemail");
 		}, function(err){
 				console.log("Error xhr: " + err);
 		}
@@ -105,7 +105,7 @@
 
 				function doCheck(form){
 					var results = validate.check(form, profile),					
-							r = dom.byId("jsonresponsediv");
+							r = dom.byId("getvalidation");
 
 					if(results.isSuccessful()){
 						//	everything passed, log it to the result div
@@ -218,41 +218,41 @@
 	</script>	
 	 -->
 <div class="demoLayout" style="height: 786px; width: 1024px" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="design: 'headline'">
-			<div class="demoLayout" style="height: 13%" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="region: 'top', splitter: true, design: 'headline'">
+			<div class="demoLayout" style="height: 10%" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="region: 'top', splitter: true, design: 'headline'">
 				<div id="wsqi" align="center" class="centerPanel" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
 					<h1>REST Web Service Query Interface Using Dojo</h1>
 				</div>
 			</div>
-			<div id="jsonresponsediv" class="edgePanel" style="height: 75%; width: 48%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="splitter: true, region: 'right'">
-			Output Window:
-			</div>
 
-			<div class="centerPanel" style="height: 75%; width: 48%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
-
-	
+			<div class="centerPanel" style="height: 90%; width: 100%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="region: 'center'">
 
 			<form>
 			
 			<h2>All users information</h2>
 			<button type="button" id="getallbutton">Get all user information</button>
+			<div id="getall"></div>
 			
 			<h2>Searching by first name</h2>
 			<label>First name</label>
 			<input type="text" value="" id="fname" autocomplete="off" name="fname">
 			<button type="button" id="getbyfnamebutton">Get user by first name</button>
+			<div id="getfname"></div>
 			
 			<h2>Searching by last name</h2>
 			<label>Last name</label>
 			<input type="text" value="" id="lname" autocomplete="off" name="lname">
 			<button type="button" id="getbylnamebutton">Get user by last name</button>
+			<div id="getlname"></div>
 			
 			<h2>Searching by email</h2>
 			<label>Email</label>
 			<input type="text" value="" id="email" autocomplete="off" name="email">
 			<button type="button" id="getbyemailbutton">Get user by email</button>
+			<div id="getemail"></div>
 			<br>
 			<br>
 			<input type="submit" value="Validate fields" />
+			<div id="getvalidation"></div>
 			
 			</form>
 
@@ -267,9 +267,6 @@
 <div id="getdojopulloutput"></div>
 <button type="button" id="getdojopull">Get Dojo Pulls</button>
 -->
-			</div>
-			<div class="edgePanel"  style="height: 11%" data-dojo-type="dijit.layout.ContentPane" data-dojo-props="splitter: true, region: 'bottom'">
-			This region will be used to report any progress
 			</div>
 </div>
 
