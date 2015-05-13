@@ -10,14 +10,10 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.omg.CORBA.UserException;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import org.springframework.web.servlet.ResourceServlet;
-import org.springframework.stereotype.Controller;
 
 class Check
 {
@@ -29,17 +25,20 @@ class Check
 	}
 }
 
-
-public class TurbineUserRESTProcessor /*extends RESTProcessor*/ {
+public class TurbineUserRESTProcessor extends RESTProcessor  {
+	/**
+	 * 
+	 */
 
 	public ModelAndView doGet(HttpServletRequest request,
 			HttpServletResponse response) {
 
+		System.out.println("handleRequestInternal");
 		HashMap<String, String> data = new HashMap<String, String>();
 		String results = null;
-		String loginname = request.getParameter("loginname");
+		String loginname = request.getParameter("userName");
 		String email = request.getParameter("email");
-		String AllUsers = request.getParameter("getallusers");
+		//String AllUsers = request.getParameter("getallusers");
 		/*StatusObject*/ArrayList<String> statusObj = new /*StatusObject*/ArrayList<String>();
 		Gson gson=new Gson();
 
@@ -55,11 +54,12 @@ public class TurbineUserRESTProcessor /*extends RESTProcessor*/ {
 
 				results = getUserByEmail(email);
 			}
-
+/*
 			if (!Check.isEmpty(AllUsers)){
 
 				results= getUsersList();
 			}
+			*/
 		}catch(Exception e){
 
 		}
@@ -80,12 +80,14 @@ public class TurbineUserRESTProcessor /*extends RESTProcessor*/ {
 		TurbineUser user =  null;
 		Gson gson=new Gson();
 
-		try {
+		/*try {*/
 			user=TurbineUserCore.getTurbineUserByLoginName(loginname);
+			/*
 		} catch (UserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		//statusObj.setData(user);
 		statusObj.add(user);
 
@@ -106,12 +108,14 @@ public class TurbineUserRESTProcessor /*extends RESTProcessor*/ {
 		TurbineUser user =  null;
 		Gson gson=new Gson();
 
-		try {
+		//try {
 			user=TurbineUserCore.getTurbineUserByLoginName(email);
+			/*
 		} catch (UserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		//statusObj.setData(user);
 		statusObj.add(user);
 
@@ -150,7 +154,7 @@ public class TurbineUserRESTProcessor /*extends RESTProcessor*/ {
 		//return gson.toJson(statusObj, new TypeToken<StatusObject<TurbineUser>[]>(){}.getType());
 	}
 
-/*
+
 	@Override
 	public ModelAndView doPost(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -171,5 +175,5 @@ public class TurbineUserRESTProcessor /*extends RESTProcessor*/ {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	*/
+	
 }

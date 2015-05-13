@@ -33,7 +33,14 @@
         <url-pattern>/ServletController</url-pattern>
 </servlet-mapping>
 
-
+<servlet>
+        <servlet-name>RestController</servlet-name>
+        <servlet-class>com.springservice.controller.RestController</servlet-class>
+</servlet>
+<servlet-mapping>
+        <servlet-name>RestController</servlet-name>
+        <url-pattern>/RestController</url-pattern>
+</servlet-mapping>
 
 <welcome-file-list>
     <welcome-file>

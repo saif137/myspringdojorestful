@@ -176,7 +176,7 @@ public class TurbineUser {
 		public TurbineUser(int userID1, String name1, String fName1,String lName1, String email1, String confirmvalue1, Date modified1, Date created1, Date lastlogin1, String disabled1, byte[] objectdata1, Date passwordchanged1){
 			super();
 			//user_id = userID1;
-			login_name =name1 ;
+			loginname =name1 ;
 			first_name = fName1;
 			last_name = lName1 ;
 			email=email1;
