@@ -1,5 +1,7 @@
 package com.springservice.dao;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.omg.CORBA.UserException;
@@ -24,14 +26,45 @@ class Check
 
 public class TurbineUserCore {
 	
+	static ArrayList<TurbineUser> tempdata = new ArrayList<TurbineUser>();
+	
+	public static void Init()
+	{
+		TurbineUser tu1 = new TurbineUser();
+		tu1.setLoginName("loginname1");
+		tu1.setEmail("email1");
+		tempdata.add(tu1);
+
+		TurbineUser tu2 = new TurbineUser();
+		tu2.setLoginName("loginname2");
+		tu2.setEmail("email2");
+		tempdata.add(tu2);
+
+		TurbineUser tu3 = new TurbineUser();
+		tu3.setLoginName("loginname3");
+		tu3.setEmail("email3");
+		tempdata.add(tu3);
+
+		TurbineUser tu4 = new TurbineUser();
+		tu4.setLoginName("loginname4");
+		tu4.setEmail("email4");
+		tempdata.add(tu4);
+
+		TurbineUser tu5 = new TurbineUser();
+		tu5.setLoginName("loginname5");
+		tu5.setEmail("email5");
+		tempdata.add(tu5);
+
+	}
+	
 	public static TurbineUser getTurbineUserByLoginName( String userName )
-	throws UserException
+	/*throws UserException*/
 	{
 		if(Check.isEmpty(userName))
 			return null;
 		
-		TurbineUser user = null;
 		/*
+		TurbineUser user = null;
 		Criteria criteria = new Criteria();
 		Integer[] excludedUserIds = {2,33,21,22,23};
 		if(!Check.isEmpty(excludedUserIds))
@@ -60,18 +93,28 @@ public class TurbineUserCore {
 		    throw new UserException(
 			        "There are more than one user with login name of " + userName );
 		}
+		return users;
 		*/
-		return user;
+		Iterator<TurbineUser> iterator = tempdata.iterator();
+		while(iterator.hasNext()){
+		  TurbineUser element = (TurbineUser) iterator.next();
+		  if(element.getLoginName().toLowerCase().equals(userName.toLowerCase()))
+		  {
+			  System.out.println("Found -> " + element.getLoginName());
+			  return element;
+		  }
+		}
+		return null;
 	}
 	
 	public static TurbineUser getTurbineUserByEmail( String email )
-			throws UserException
+			/*throws UserException*/
 			{
 				if(Check.isEmpty(email))
 					return null;
 				
-				TurbineUser user = null;
 				/*
+				TurbineUser user = null;
 				Criteria criteria = new Criteria();
 				Integer[] excludedUserIds = {2,33,21,22,23};
 				if(!Check.isEmpty(excludedUserIds))
@@ -100,10 +143,22 @@ public class TurbineUserCore {
 				    throw new UserException(
 					        "There are more than one user with login name of " + email );
 				}
+				return users;
 				*/
-				return user;
+				Iterator<TurbineUser> iterator = tempdata.iterator();
+				while(iterator.hasNext()){
+				  TurbineUser element = (TurbineUser) iterator.next();
+				  if(element.getEmail().toLowerCase().equals(email.toLowerCase()))
+				  {
+					  System.out.println("Found -> " + element.getEmail());
+					  return element;
+				  }
+				}
+				return null;
 			}
 	
+	//This function is used internally normally. It referes to the primary key of the data
+	/*
 	public static TurbineUser getTurbineUserById( int id )
 			throws UserException
 			{
@@ -111,7 +166,6 @@ public class TurbineUserCore {
 					return null;
 				
 				TurbineUser user = null;
-				/*
 				Criteria criteria = new Criteria();
 				Integer[] excludedUserIds = {2,33,21,22,23};
 				if(!Check.isEmpty(excludedUserIds))
@@ -140,15 +194,14 @@ public class TurbineUserCore {
 				    throw new UserException(
 					        "There are more than one user with login name of " + id );
 				}
-				*/
 				return user;
 			}
-			
+			*/
 	
-public static List<TurbineUser> getUsers() throws Exception {
+public static List<TurbineUser> getUsers() /*throws Exception*/ {
 	
+	/*
 		List<TurbineUser> users = null;
-		/*
 		Criteria c = new Criteria();
 		Integer[] excludedUserIds = {2,33,21,22,23};
 		if(!Check.isEmpty(excludedUserIds))
@@ -157,9 +210,8 @@ public static List<TurbineUser> getUsers() throws Exception {
 		users = TurbineUserPeer.doSelect(c);
 		if (users == null) 
 			users = new ArrayList<TurbineUser>();
-			*/
 		return users;
+			*/
+	return tempdata;
 	}
-
-
 }

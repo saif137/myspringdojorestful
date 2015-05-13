@@ -16,7 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.springframework.web.servlet.ResourceServlet;;
+import org.springframework.web.servlet.ResourceServlet;
+import org.springframework.stereotype.Controller;
 
 class Check
 {

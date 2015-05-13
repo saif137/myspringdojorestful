@@ -8,12 +8,12 @@ import java.util.Date;
 public class TurbineUser {
 	
 	
-	private int user_id;
+	//private int user_id;
     
     /**
      * The value for the login_name field
      */
-    private String login_name;
+    private String loginname;
           
     /**
      * The value for the password_value field
@@ -75,7 +75,7 @@ public class TurbineUser {
 		public TurbineUser(){
 		   	
 	    }
-		
+		/*
 		public int getUserID() {
 			return user_id;
 		}
@@ -83,13 +83,13 @@ public class TurbineUser {
 		public void setUserID(int userID) {
 			this.user_id = userID;
 		}
-
+		*/
 		public String getLoginName() {
-			return login_name;
+			return loginname;
 		}
 
 		public void setLoginName(String name) {
-			this.login_name = name;
+			this.loginname = name;
 		}
 
 		public String getFName() {
@@ -175,7 +175,7 @@ public class TurbineUser {
 		
 		public TurbineUser(int userID1, String name1, String fName1,String lName1, String email1, String confirmvalue1, Date modified1, Date created1, Date lastlogin1, String disabled1, byte[] objectdata1, Date passwordchanged1){
 			super();
-			user_id = userID1;
+			//user_id = userID1;
 			login_name =name1 ;
 			first_name = fName1;
 			last_name = lName1 ;
